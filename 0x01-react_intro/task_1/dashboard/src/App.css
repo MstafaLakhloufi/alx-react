@@ -1,0 +1,29 @@
+:root {
+  --color-primary: #e01d3f;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+  font-size: 20px;
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.App-header img {
+  width: 200px;
+}
+
+.App-body {
+  margin: 50px;
+}
+
+.App-footer {
+  border-top: 3px solid var(--color-primary);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  font-style: italic;
+}
