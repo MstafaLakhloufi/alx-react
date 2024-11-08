@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import '../css/main.css';
 
+
 $('body').append(`
   <p>Holberton Dashboard</p>
   <p>Dashboard data for the students</p>
