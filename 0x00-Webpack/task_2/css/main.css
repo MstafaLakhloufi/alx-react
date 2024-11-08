@@ -1,5 +1,6 @@
-#counter-text {
-float: right;
+#count {
+    font-weight: bold;
+    float: right;
 }
 
 #logo {
