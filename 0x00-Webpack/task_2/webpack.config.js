@@ -1,6 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
 
 module.exports = {
   mode: "production",
@@ -8,36 +6,28 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
-    clean: true,
   },
   module: {
-    // Corrected from "modules" to "module"
     rules: [
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: 'asset/resource',
+        test: /\.(gif|png|jpeg|jpg|svg)$/i,
         use: [
+          "file-loader",
           {
             loader: "image-webpack-loader",
             options: {
-              bypassOnDebug: true,
-              disable: true,
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
             },
           },
         ],
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      inject: "body",
-    }),
-  ],
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
