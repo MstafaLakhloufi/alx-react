@@ -37,6 +37,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
+        type: 'asset/resource',
         use: [
           "file-loader",
           {
@@ -54,7 +55,6 @@ module.exports = {
     static: path.resolve(__dirname, './public'),
     port: 8564,
     open: true,
-    hot: true,
   },
   devtool: 'inline-source-map',
 };
