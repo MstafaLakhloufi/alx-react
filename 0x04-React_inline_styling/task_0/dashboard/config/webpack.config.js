@@ -1,54 +1,50 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.js",
+  // APP ENTRY POINT
+  entry: './src/index.js',
+
+  // OUTPUT DIRECTORY
   output: {
-    filename: "bundle.js",
+    filename: 'bundle.js',
+    path: path.resolve('./dist'),
   },
-  mode: "development",
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        // type: 'asset/resource',
-        use: [
-          "file-loader",
-          {
-            loader: "image-webpack-loader",
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(js|jsx)$/,
+
+	devtool: 'inline-source-map',
+	module: {
+		rules: [
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"]
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							disable: true,
+							bypassOnDebug: true
+						},
+					},
+				],
+			},
+			{
+				test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ["*", ".js", ".jsx"],
-  },
+        use: {
+          loader: "babel-loader"
+        },
+			}
+		]
+	},
+
+  // DEV SERVER ENTRY POINT
   devServer: {
-    static: "./dist",
-    compress: true,
-    open: true,
-    hot: true,
-    port: 8564,
+		hot: true,
+		compress: true,
+		static: path.resolve('./dist'),
+		historyApiFallback: true
   },
-  devtool: "inline-source-map",
-  plugins: [
-    new HtmlWebpackPlugin({
-      name: "index.html",
-      inject: false,
-      template: "./dist/index.html",
-    }),
-  ],
 };
